@@ -1,4 +1,0 @@
-Nome: Francesco
-Cognome: Calabró
-Data di nascita: 06/11/1992
-Email: f.calabro@dstech.it
