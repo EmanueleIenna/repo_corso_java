@@ -1,5 +1,7 @@
 package it.dst.formazione;
 
+import it.dst.formazione.tools.structure.JsonDataReader;
+
 import static it.dst.formazione.lezione3.InputOutput.test_inputoutput;
 import static it.dst.formazione.lezione3.Iterazioni.test_iterazione_while;
 import static it.dst.formazione.lezione3.Iterazioni.test_iterazione_for;
@@ -11,6 +13,8 @@ public class Main {
     public static void main(String[] args) {
 
         System.out.println("Hello, World!");
+
+        JsonDataReader.leggiJson();
 
         // test_variabili();
 
