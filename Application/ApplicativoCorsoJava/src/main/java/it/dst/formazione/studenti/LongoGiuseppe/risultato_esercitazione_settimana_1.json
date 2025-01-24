@@ -1,0 +1,15 @@
+{
+  "classificazione" : {
+    "Dispari" : [ 5, 7, 9, 3 ],
+    "Pari" : [ 78, 6, 52, 20, 10 ]
+  },
+  "analisi" : {
+    "numeroPiuPiccolo" : 3,
+    "media" : 21.11111111111111,
+    "numeroPiuGrande" : 78
+  },
+  "numeriOriginali" : [ 5, 7, 78, 6, 52, 20, 10, 9, 3 ],
+  "Risultati esercitazioni " : {
+    "info" : "risultato esercitazione settimana 20-1-25"
+  }
+}

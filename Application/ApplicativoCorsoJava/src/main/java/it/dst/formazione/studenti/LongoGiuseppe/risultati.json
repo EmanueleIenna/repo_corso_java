@@ -1,0 +1,12 @@
+{
+  "classificazione" : {
+    "Dispari" : [ 89, 65, 1 ],
+    "Pari" : [ 50, 10, 4, 6, 80, 14, 14, 28, 12 ]
+  },
+  "analisi" : {
+    "numeroPiuPiccolo" : 1,
+    "media" : 31.083333333333332,
+    "numeroPiuGrande" : 89
+  },
+  "numeriOriginali" : [ 50, 10, 89, 4, 6, 80, 14, 65, 14, 28, 12, 1 ]
+}
