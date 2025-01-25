@@ -9,84 +9,110 @@ import java.io.IOException;
 
 public class Esercizi {
 
-    List<Integer> listaNumeri = new ArrayList<>();
-//    String PARI = "Pari";
-//    String DISP = "Dispari";
 
-    //Metodo per leggere i numeri dall'utente ed inserirli in una lista.
-    public List<Integer> leggiNumeriPerLista(){
+    public static List<Integer> leggiNumeriPerLista() {
+        List<Integer> listaNumeri = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Quanti Numeri vuoi inserire?");
-        int quantiNum = sc.nextInt();
+        System.out.println("Quanti numeri vuoi inserire?");
+        int quantiNum = 0;
 
-        while(listaNumeri.size() < quantiNum){
-
-            System.out.println("Inserisci un numero: ");
-            int sceltaNumero = sc.nextInt();
-
-            if(sceltaNumero > 0){
-                listaNumeri.add(sceltaNumero);
-            } else {
-                System.out.println("Seleziona un numero valido: ");
+        // Validazione input per il numero di elementi
+        while (true) {
+            try {
+                quantiNum = sc.nextInt();
+                if (quantiNum > 0) {
+                    break;
+                } else {
+                    System.out.println("Inserisci un numero maggiore di 0.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Errore: Inserisci un numero valido.");
+                sc.next(); //in caso di errore utente
             }
         }
-        System.out.println();
 
+        // Inserimento dei numeri nella lista
+        while (listaNumeri.size() < quantiNum) {
+            System.out.println("Inserisci un numero positivo:");
+            try {
+                int sceltaNumero = sc.nextInt();
+                if (sceltaNumero > 0) {
+                    listaNumeri.add(sceltaNumero);
+                } else {
+                    System.out.println("Numero non valido. Deve essere positivo.");
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Errore: Inserisci un numero valido.");
+                sc.next(); // in caso errore utente
+            }
+        }
+
+        System.out.println("Hai inserito tutti i numeri.");
         return listaNumeri;
     }
 
-    //Metodo per leggere la lista e dividere pari e dispari
-    public Map<List<Integer>, List<Integer>> pariDispariConMap(List<Integer> lista){
-        Map<List<Integer>, List<Integer>> mappaPariDispari = new HashMap<>();
+
+    public static Map<String, List<Integer>> pariDispariConMap(List<Integer> lista) {
+
+        Map<String, List<Integer>> mappaPariDispari = new HashMap<>();
 
         List<Integer> numeriPari = new ArrayList<>();
         List<Integer> numeriDispari = new ArrayList<>();
 
-        for(int num : lista){
-            if(num % 2 == 0){
+        for (int num : lista) {
+            if (num % 2 == 0) {
                 numeriPari.add(num);
             } else {
                 numeriDispari.add(num);
             }
         }
-        mappaPariDispari.put(numeriPari, numeriDispari);
+
+        if (!numeriPari.isEmpty()) {
+            mappaPariDispari.put("Pari", numeriPari);
+        }
+        if (!numeriDispari.isEmpty()) {
+            mappaPariDispari.put("Dispari", numeriDispari);
+        }
 
         return mappaPariDispari;
     }
 
     //Metodo per stampare la map
-    public void stampaMappa(Map<List<Integer>, List<Integer>> mappa){
+    public static void stampaMappa(Map<String, List<Integer>> mappa){
 
-        List<Integer> numeriPari = new ArrayList<>();
-        List<Integer> numeriDispari = new ArrayList<>();
+        List<Integer> numeriPari = mappa.get("Pari");
+        List<Integer> numeriDispari = mappa.get("Dispari");
 
-        for(Map.Entry<List<Integer>, List<Integer>> entry : mappa.entrySet()){
-
-            numeriPari.addAll(entry.getKey());
-            numeriDispari.addAll(entry.getValue());
-
+        if (numeriPari == null) {
+            numeriPari = new ArrayList<>();
         }
+        if (numeriDispari == null) {
+            numeriDispari = new ArrayList<>();
+        }
+
         System.out.println("Numeri Pari: ");
+
         for (int i : numeriPari){
             System.out.print(i + " ");
         }
         System.out.println();
+
         System.out.println("Numeri Dispari: ");
         for (int i : numeriDispari){
             System.out.print(i + " ");
         }
         System.out.println();
+
     }
 
+    //Controllo da fare dopo rimozione variabile risultato.
     public static double mediaMatematica(List<Integer> lista){
         double media = 0;
         for(int i : lista){
             media += i;
         }
-        double risultato = media / lista.size();
-
-        return risultato;
+        return media / lista.size();
     }
 
     //Maggiore
@@ -107,40 +133,61 @@ public class Esercizi {
         return numMin;
     }
 
-    public static void stampaListaEMapInJSON(List<Integer>lista, Map<List<Integer>, List<Integer>> mappa){
+    public static void stampaListaEMapInJSON(List<Integer> lista, Map<String, List<Integer>> mappa) {
 
-        List<Integer> numeriPari = new ArrayList<>();
-        List<Integer> numeriDispari = new ArrayList<>();
+        //Pari e dispari presi dalla map passata (Esercizi.pariDispariConMap per usarla nel main)
+        List<Integer> numeriPari = mappa.get("Pari");
+        List<Integer> numeriDispari = mappa.get("Dispari");
 
-        for (Map.Entry<List<Integer>, List<Integer>> entry : mappa.entrySet()) {
-
-            //numeriPari.addAll(mappa.get(entry.getKey()));
-
-            numeriPari.addAll(entry.getKey());
-            numeriDispari.addAll(entry.getValue());
+        if (numeriPari == null) {
+            numeriPari = new ArrayList<>();
+        }
+        if (numeriDispari == null) {
+            numeriDispari = new ArrayList<>();
         }
 
-        Map<String, Object> dataDaInserire = new HashMap<>();
+        // Calcola le statistiche (media, numero maggiore e minore)
+        double media = mediaMatematica(lista);
+        int numeroMaggiore = numMaggiore(lista);
+        int numeroMinore = numMinore(lista);
 
-        dataDaInserire.put("lista", lista);
-        dataDaInserire.put("numeriPari", numeriPari);
-        dataDaInserire.put("numeriDispari", numeriDispari);
-        dataDaInserire.put("MediaMatematica", mediaMatematica(lista));
-        dataDaInserire.put("NumeroMaggiore", numMaggiore(lista));
-        dataDaInserire.put("NumeroMinore", numMinore(lista));
+        // Crea la mappa per i dati da inserire nel file JSON
+        Map<String, Object> analisi = new HashMap<>();
+        analisi.put("numeroPiuGrande", numeroMaggiore);
+        analisi.put("numeroPiuPiccolo", numeroMinore);
+        analisi.put("media", media);
 
+        // Crea la mappa per la classificazione dei numeri
+        Map<String, List<Integer>> classificazione = new HashMap<>();
+        classificazione.put("Pari", numeriPari);
+        classificazione.put("Dispari", numeriDispari);
+
+        /*
+         TODO Struttura finale da inserire nel file JSON ordinata giusta (COSI NUMERI ORIGINALI è IN FONDO
+         POSSIBILMENTE SENZA USARE LINKED HASH MAPS
+         */
+        Map<String, Object> datiAnalizzati = new HashMap<>();
+        datiAnalizzati.put("numeriOriginali", lista);
+        datiAnalizzati.put("analisi", analisi);
+        datiAnalizzati.put("classificazione", classificazione);
+
+
+        //TODO Gson per convertire la mappa in formato JSON con una visualizzazione leggibile (NON ANCORA ORIZZONTALI)
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        String jsonOutput = gson.toJson(dataDaInserire);
+        String jsonOutput = gson.toJson(datiAnalizzati);
 
-        // Scrivi i dati in un file JSON
+        // Scrivi i dati nel file JSON
         try (FileWriter writer = new FileWriter("risultati_v2.json")) {
-            gson.toJson(dataDaInserire, writer);
-            System.out.println("Dati salvati con successo in risultati.json");
+            gson.toJson(datiAnalizzati, writer);
+            System.out.println("Dati salvati con successo in risultati_v2.json");
         } catch (IOException e) {
             System.err.println("Errore durante la scrittura del file JSON: " + e.getMessage());
         }
 
+
+
     }
+
 
 
 

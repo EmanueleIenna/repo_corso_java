@@ -1,34 +1,31 @@
 package org.example;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Esercizi ex = new Esercizi();
-        List<Integer> lista = new ArrayList<>();
 
-        while (true){
-            try {
-                for(int i : ex.leggiNumeriPerLista()){
-                    System.out.print(i + " ");
-                    lista.add(i);
-                }
-                break;
-            } catch (InputMismatchException exception){
-                System.out.println("Errore di inserimento");
-            }
+        // Legge la lista dei numeri dall'utente
+        List<Integer> lista = Esercizi.leggiNumeriPerLista();
+
+        // Stampa i numeri inseriti
+        System.out.println("Numeri inseriti:");
+        for (int i : lista) {
+            System.out.print(i + " ");
         }
+
         System.out.println();
-        Map<List<Integer>, List<Integer>> mappa = ex.pariDispariConMap(lista);
-        ex.stampaMappa(mappa);
+
+        //Stampo mappa divisa in pari e dispari
+        Esercizi.stampaMappa(Esercizi.pariDispariConMap(lista));
+
+        //Stampo la media matematica, il numero maggiore ed il numero minore.
         System.out.println("Media matematica della lista: " + Esercizi.mediaMatematica(lista));
         System.out.println("Numero Maggiore: " + Esercizi.numMaggiore(lista));
         System.out.println("Numero Minore: " + Esercizi.numMinore(lista));
 
-        Esercizi.stampaListaEMapInJSON(lista, mappa);
+        //Creo il file JSON
+        Esercizi.stampaListaEMapInJSON(lista, Esercizi.pariDispariConMap(lista));
 
 
 
