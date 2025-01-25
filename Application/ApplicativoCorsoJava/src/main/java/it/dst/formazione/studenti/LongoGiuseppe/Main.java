@@ -1,11 +1,19 @@
 package it.dst.formazione.studenti.LongoGiuseppe;
 
 
+
+import static it.dst.formazione.studenti.LongoGiuseppe.EsercizioSettimana1v2.inserimento_manuale;
+import static it.dst.formazione.tools.structure.JsonDataReader.leggiJson;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello, World!");
+
+        inserimento_manuale();
+
+        //eseguiEsercizioSettimana1();
+
 
         // test_variabili();
 

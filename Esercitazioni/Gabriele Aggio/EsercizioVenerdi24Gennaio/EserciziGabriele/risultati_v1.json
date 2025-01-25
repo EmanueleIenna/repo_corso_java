@@ -1,0 +1,19 @@
+{
+  "lista": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "MediaMatematica": 2.5,
+  "NumeroMaggiore": 4,
+  "numeriDispari": [
+    1,
+    3
+  ],
+  "NumeroMinore": 1,
+  "numeriPari": [
+    2,
+    4
+  ]
+}
