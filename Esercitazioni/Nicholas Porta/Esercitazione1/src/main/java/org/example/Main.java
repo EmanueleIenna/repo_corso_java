@@ -68,7 +68,7 @@ public class Main {
         System.out.println("minimo " + nMin);
         System.out.println("la media è " + nMedia);
         // creo una mappa con string , object cosi da salvare qualsiasi tipo di dato
-        Map<String, Object> risultati = new HashMap<>();
+        Map<String, Object> risultati = new LinkedHashMap<>();
         risultati.put("numeri_inseriti", numeriInseriti);
         risultati.put("pari", calcolo.get("Pari"));
         risultati.put("dispari", calcolo.get("Dispari"));
