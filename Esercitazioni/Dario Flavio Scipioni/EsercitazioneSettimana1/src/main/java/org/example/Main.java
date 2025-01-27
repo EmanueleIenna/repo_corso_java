@@ -10,51 +10,41 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-        List<Integer> listaNumeri = new ArrayList<>() ;
-        Map<String, List<Integer>> map = new HashMap<>();
+        List<Integer> listaNumeri = InputReader.getNumberList(System.in, 3);
 
-        System.out.println("Inserisci 5 numeri da aggiungere alla lista!");
-        for(int i=0; i<5; i++){
-            int numeroDaInserire = scanner.nextInt();
-            listaNumeri.add(numeroDaInserire) ;
-        }
-
-
-        List<Integer> listaPari = new ArrayList<>();
+        List <Integer> listaPari = new ArrayList<>();
         List<Integer> listaDispari = new ArrayList<>();
+
         int somma= 0;
         int media= 0;
-        int temporanea= 0;
-
-        System.out.println("La tua lista è composta da " );
-        for(int inserito:listaNumeri){
-            if(inserito %2 == 0){
-                listaPari.add(inserito);
-                map.put("Pari", listaPari);
-            }
-            else {
-                listaDispari.add(inserito);
-                map.put("Dispari", listaDispari);
-            }
-            temporanea++;
-            somma=inserito+somma;
-            media=somma/temporanea;
-            System.out.println(" " +inserito);
-        }
 
         int grande = listaNumeri.get(0);
-        for(int j=0; j<listaNumeri.size(); j++){
-            if(grande<listaNumeri.get(j)){
-                grande=listaNumeri.get(j);
-            }
-        }
+        int piccolo = listaNumeri.get(0);
 
-        int piccolo= listaNumeri.get(0);
+        System.out.println("La tua lista è composta da " );
+        Map<String, List<Integer>> map = new HashMap<>();
         for(int k=0; k<listaNumeri.size(); k++){
-            if(piccolo>listaNumeri.get(k)){
-                piccolo=listaNumeri.get(k);
+
+            int numeroCorrente = listaNumeri.get(k);
+            if(Calculate.isPari(numeroCorrente)){
+                listaPari.add(numeroCorrente);
+                map.put("Pari", listaPari);
             }
+            else if (Calculate.isDispari(numeroCorrente)){
+                listaDispari.add(numeroCorrente);
+                map.put("Dispari", listaDispari);
+            }
+            if (grande < listaNumeri.get(k)) {
+                grande = listaNumeri.get(k);
+
+            } else if (piccolo > listaNumeri.get(k)) {
+                piccolo = listaNumeri.get(k);
+
+            }
+
+            somma=listaNumeri.get(k)+somma;
+            media=somma/(k+1);
+            System.out.println(" " +listaNumeri.get(k));
         }
 
         System.out.println("Numeri inseriti: " + listaNumeri);
@@ -66,16 +56,10 @@ public class Main {
         System.out.println("Il numero più piccolo della lista è: " +piccolo);
 
         // Struttura dati per il salvataggio
-        Map datiAnalizzati = new HashMap<>();
-        datiAnalizzati.put("listaNumeri", listaNumeri);
+       String dettaglio = JsonWriter.mostraRisultati(listaNumeri,map, somma, media,grande,piccolo);
 
         // Scrivi i dati in un file JSON
-        try (FileWriter writer = new FileWriter("risultati.json")) {
-            Gson gson = new Gson();
-            gson.toJson(datiAnalizzati, writer);
-            System.out.println("Dati salvati con successo in risultati.json");
-        } catch (IOException e) {
-            System.err.println("Errore durante la scrittura del file JSON: " + e.getMessage());
-        }
+        JsonWriter.scriviJson(dettaglio);
+
     }
 }
