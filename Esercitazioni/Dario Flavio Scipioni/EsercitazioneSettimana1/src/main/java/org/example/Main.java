@@ -20,13 +20,14 @@ public class Main {
             listaNumeri.add(numeroDaInserire) ;
         }
 
-        System.out.println("La tua lista è composta da " );
+
         List<Integer> listaPari = new ArrayList<>();
         List<Integer> listaDispari = new ArrayList<>();
         int somma= 0;
         int media= 0;
         int temporanea= 0;
 
+        System.out.println("La tua lista è composta da " );
         for(int inserito:listaNumeri){
             if(inserito %2 == 0){
                 listaPari.add(inserito);
@@ -39,7 +40,7 @@ public class Main {
             temporanea++;
             somma=inserito+somma;
             media=somma/temporanea;
-            System.out.println(inserito);
+            System.out.println(" " +inserito);
         }
 
         int grande = listaNumeri.get(0);
@@ -56,10 +57,6 @@ public class Main {
             }
         }
 
-        /*Collections.sort(listaNumeri);
-        System.out.println("Lista ordinata" + listaNumeri);
-         */
-
         System.out.println("Numeri inseriti: " + listaNumeri);
         System.out.println("Numeri pari inseriti: " + listaPari);
         System.out.println("Numeri dispari inseriti: " + listaDispari);
@@ -67,12 +64,6 @@ public class Main {
         System.out.println("La media dei numeri inseriti è: " + media);
         System.out.println("Il numero più grande della lista è: " +grande);
         System.out.println("Il numero più piccolo della lista è: " +piccolo);
-
-
-      /* for (Map.Entry<String, List<Integer>> entry: map.entrySet()) {
-            System.out.println(entry.getKey()+": " + entry.getValue());
-        }
-       */
 
         // Struttura dati per il salvataggio
         Map datiAnalizzati = new HashMap<>();
