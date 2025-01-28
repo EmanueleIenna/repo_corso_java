@@ -7,6 +7,7 @@ import static it.dst.formazione.lezione3.Iterazioni.test_iterazione_while;
 import static it.dst.formazione.lezione3.Iterazioni.test_iterazione_for;
 import static it.dst.formazione.lezione3.Operatori.test_operatori;
 import static it.dst.formazione.lezione3.Variabili.test_variabili;
+import static it.dst.formazione.lezione7.stream.StreamUtils.lezione7_stream;
 
 public class Main {
 
@@ -14,19 +15,7 @@ public class Main {
 
         System.out.println("Hello, World!");
 
-        soluzione_esercitazione_1();
-
-        // processNumbers();
-
-        // test_variabili();
-
-        // test_operatori();
-
-        // test_iterazione_while();
-
-        // test_iterazione_for();
-
-        // test_inputoutput();
+        lezione7_stream();
 
     }
 }
