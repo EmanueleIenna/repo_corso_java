@@ -31,7 +31,7 @@ public class AlfredoCastaldi {
         System.out.println(paroleTest);
 
         paroleTest.replaceAll(String::toUpperCase);
-        
+
     }
 
     private static class MaxNumberNotFoundException extends RuntimeException {
