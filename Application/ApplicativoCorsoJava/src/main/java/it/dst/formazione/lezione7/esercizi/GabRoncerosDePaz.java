@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class GabRoncerosDePaz {
     public static void plutarco() {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 11, 12, 14, 15, 18, 22, 89, 47, 86, 111, 225);
-        List<String> parole = Arrays.asList("Ciao", "MIao", "Spasiba", "petaloso", "Lawliet")
+        List<String> parole = Arrays.asList("Ciao", "MIao", "Spasiba", "petaloso", "Lawliet");
 
         // Trova l'elemento più grande
         Optional<Integer> maxNumber = numbers.stream()
