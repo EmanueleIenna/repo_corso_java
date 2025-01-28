@@ -1,5 +1,7 @@
 package it.dst.formazione;
 
+import it.dst.formazione.lezione7.esercizi.AlfredoCastaldi;
+
 import static it.dst.formazione.esercitazione1.Soluzioni_esercitazione.soluzione_esercitazione_1;
 import static it.dst.formazione.esercitazione1.Soluzioni_esercizione_advanced_primenumber.processNumbers;
 import static it.dst.formazione.lezione3.InputOutput.test_inputoutput;
@@ -16,6 +18,7 @@ public class Main {
         System.out.println("Hello, World!");
 
         lezione7_stream();
+        AlfredoCastaldi.esercizioMainMetodo();
 
     }
 }
