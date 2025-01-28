@@ -3,13 +3,13 @@ package org.example;
 public class Student {
     String nome;
     int eta;
-    int vot;
+    int voto;
     int id;
 
     public Student(String nome, int eta, int vot, int id) {
         this.nome = nome;
         this.eta = eta;
-        this.vot = vot;
+        this.voto = vot;
         this.id = id;
     }
 
@@ -29,12 +29,12 @@ public class Student {
         this.eta = eta;
     }
 
-    public int getVot() {
-        return vot;
+    public int getVoto() {
+        return voto;
     }
 
-    public void setVot(int vot) {
-        this.vot = vot;
+    public void setVoto(int voto) {
+        this.voto = voto;
     }
 
     public int getId() {
@@ -43,5 +43,9 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
+    }
+    @Override
+    public String toString(){
+        return "Studente {Nome: " + nome + " eta: " +eta + " voto: "+ voto + " id: " + id + "}" ;
     }
 }
