@@ -14,7 +14,7 @@ public class StreamExample {
         List<Integer> risultati = numeri.stream()
                 .filter(n -> n % 2 == 0)
                 .map(n -> n * 2)
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Risultati: " + risultati); // Output: [4, 8, 12]
     }
@@ -78,7 +78,7 @@ public class StreamExample {
 
         List<Integer> listaPiatta = listaAnnidata.stream()
                 .flatMap(List::stream)
-                .collect(Collectors.toList());
+                .toList();
 
         System.out.println("Lista piatta: " + listaPiatta); // Output: [1, 2, 3, 4, 5, 6, 7, 8, 9]
     }

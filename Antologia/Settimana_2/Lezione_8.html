@@ -200,22 +200,22 @@ public class OptionalCombinazione {
                 Grazie a <code>Optional</code>, possiamo gestire i valori nulli in modo sicuro e trasformare i nomi presenti 
                 in maiuscolo:
             </p>
-            <pre><code>import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
-public class ProgettoStreamOptional {
+            <pre><code>public class ProgettoStreamOptional {
     public static void main(String[] args) {
-        List<String> nomi = Arrays.asList("Marco", "Lucia", "Giulia", null, "Stefano");
-
-        // Filtrare e trasformare i nomi
-        List<String> risultati = nomi.stream()
-                                     .filter(Optional::ofNullable) // Gestione valori nulli
-                                     .filter(Optional::isPresent)
-                                     .map(Optional::get)
-                                     .map(String::toUpperCase)
-                                     .collect(Collectors.toList());
+        
+        List<Optional<String>> nomiOptionalList = List.of(
+            Optional.of("Mario"),
+            Optional.empty(),
+            Optional.of("Anna"),
+            Optional.empty(),
+            Optional.of("Luigi")
+        );
+    
+        List<String> risultati = nomiOptionalList.stream()
+            .filter(Optional::isPresent) // Filtra solo gli Optional non vuoti
+            .map(Optional::get) // Estrai il valore da Optional
+            .map(String::toUpperCase) // Trasforma in maiuscolo
+            .toList();
 
         System.out.println("Nomi trasformati: " + risultati);
     }
@@ -228,21 +228,22 @@ public class ProgettoStreamOptional {
                 Nell'esempio avanzato, utilizziamo metodi aggiuntivi di <code>Optional</code> e la Stream API per calcolare 
                 la lunghezza media dei nomi, ignorando i valori nulli:
             </p>
-            <pre><code>import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-
-public class LunghezzaMediaNomi {
+            <pre><code>public class LunghezzaMediaNomi {
     public static void main(String[] args) {
-        List<String> nomi = Arrays.asList("Marco", null, "Lucia", "Stefano", null);
 
-        double lunghezzaMedia = nomi.stream()
-                                    .filter(Optional::ofNullable)
-                                    .filter(Optional::isPresent)
-                                    .map(Optional::get)
-                                    .mapToInt(String::length)
-                                    .average()
-                                    .orElse(0.0);
+        List<Optional<String>> nomiOptionalList = List.of(
+                Optional.of("Mario"),
+                Optional.empty(),
+                Optional.of("Anna"),
+                Optional.empty(),
+                Optional.of("Luigi")
+        );
+
+        double lunghezzaMedia = nomiOptionalList.stream()
+                .flatMap(Optional::stream) // Estrae i valori presenti senza usare isPresent() e get()
+                .mapToInt(String::length) // Mappa alla lunghezza delle stringhe
+                .average() // Calcola la media
+                .orElse(0.0); // Ritorna 0.0 se la lista è vuota
 
         System.out.println("Lunghezza media dei nomi: " + lunghezzaMedia);
     }
