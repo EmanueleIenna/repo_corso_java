@@ -1,6 +1,5 @@
-package it.dst.formazione.lezione7.esercizi;
+package it.dst.formazione.lezione7.esercizio;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;

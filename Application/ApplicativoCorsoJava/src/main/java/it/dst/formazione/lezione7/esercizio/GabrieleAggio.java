@@ -1,11 +1,8 @@
-package it.dst.formazione.lezione7.esercizi;
-
-import com.google.gson.internal.bind.util.ISO8601Utils;
+package it.dst.formazione.lezione7.esercizio;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 public class GabrieleAggio {
 
