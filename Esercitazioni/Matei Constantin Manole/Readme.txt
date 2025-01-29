@@ -1,3 +1,3 @@
-nome: Matei Constantin 
-cognome: Manole
-email: m.manole@dstech.it
+Matei Constantin Manole
+
+m.manole@dstech.it
